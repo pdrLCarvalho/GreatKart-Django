@@ -45,7 +45,7 @@ def payments(request):
 
         cart_item = CartItem.objects.get(id=item.id)
         product_variation = cart_item.variations.all()
-        orderproduct = OrderProduct.objects.get(id=OrderProduct.id)
+        orderproduct = OrderProduct.objects.get(id=orderproduct.id)
         orderproduct.variations.set(product_variation)
         orderproduct.save()
 
@@ -59,7 +59,7 @@ def payments(request):
 
     #Send order recieved email to costumer
     mail_subject = 'Thank you for your order'
-    message = render_to_string('accounts/order_recieved_email.html', {
+    message = render_to_string('orders/order_recieved_email.html', {
         'user': request.user,
         'order':order,
     })
